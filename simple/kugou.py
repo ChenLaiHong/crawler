@@ -25,14 +25,15 @@ def get_info(url):
     titles = soup.select(".pc_temp_songlist > ul > li > a")
     songs_times = soup.select(".pc_temp_time")
 
-    for rank,title,song_time in zip(ranks,titles,songs_times):
+    for rank, title, song_time in zip(ranks, titles, songs_times):
         data = (rank.get_text().strip(),title.get_text().split('-')[0].strip(),title.get_text().split('-')[1].strip(),song_time.get_text().strip())
         print(data)
+        print("---------------------------------")
         mycursor.execute(sql, data)
         mydb.commit()
 
 if __name__ == "__main__":
-    urls = ['http://www.kugou.com/yy/rank/home/{}-8888.html?from=rank'.format(str(i)) for i in range(1,24)]
+    urls = ['http://www.kugou.com/yy/rank/home/{}-8888.html?from=rank'.format(str(i)) for i in range(1, 24)]
     for url in urls:
         get_info(url)
         time.sleep(1)
