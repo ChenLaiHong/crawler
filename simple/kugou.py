@@ -19,7 +19,7 @@ headers = {
 }
 
 def get_info(url):
-    wb_data = requests.get(url,headers=headers)
+    wb_data = requests.get(url, headers=headers)
     soup = BeautifulSoup(wb_data.text, "lxml")
     ranks = soup.select(".pc_temp_num")
     titles = soup.select(".pc_temp_songlist > ul > li > a")
